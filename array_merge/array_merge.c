@@ -1,8 +1,9 @@
 #include <climits>
+#include <stdio.h>
 #include "array_merge.h"
 #include "mergesort.c"
 
-int* array_merge(int num_arrays, int* sizes, int** values) {
+int* array_merge(int num_arrays, int* sizes, int** values) { 
   int maxSize = 0;
   for(int i=0; i<num_arrays; i++){
     mergesort(sizes[i], values[i]);
@@ -20,20 +21,25 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
     int lowestArr = -1;
     for(int j=0; j<num_arrays; j++){
       if(indexarr[j] < sizes[j]){
+	
         if(values[j][indexarr[j]] < lowest){
+	  
           lowest = values[j][indexarr[j]];
 	  lowestArr=j;
 	}	
+	
       }
     }
-    if(lowest == final[nextInd - 1] || nextInd == 1){
+    if(lowest != final[nextInd - 1] || nextInd == 1){
       final[nextInd] = lowest;
-      nextInd = nextInd + 1;      
+      nextInd = nextInd + 1;
+      final[0] = final[0] + 1;      
     }
     indexarr[lowestArr] = indexarr[lowestArr] + 1;
 
-  }
-
+  } 
+  free(indexarr);
   return final;
 }
+
 
