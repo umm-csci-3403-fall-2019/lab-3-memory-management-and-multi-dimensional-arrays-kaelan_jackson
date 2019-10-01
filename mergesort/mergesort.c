@@ -2,11 +2,13 @@
 #include "mergesort.h"
 
 void mergeRanges(int* values, int start, int middle, int end){
+  //takes two an array with two sorted subarrays (start- middle-1 and middle-end)
   int range = end - start;
   int* destination = (int*) calloc(range, sizeof(int));
   int i = start;
   int j = middle;
   int copy = 0;
+  //looking at the lowest of each sub array, take the lower one and put it first
   while(i < middle && j < end){
     if(values[i] < values[j]){
       destination[copy] = values[i];
@@ -36,6 +38,7 @@ void mergeRanges(int* values, int start, int middle, int end){
 }
 
 void mergesortRange(int* values, int start, int end){
+  //split the array into two sub arrays and sort them.
   int size = end - start;
   if(size >= 2){
     int middle = (start + end) / 2;
